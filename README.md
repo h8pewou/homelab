@@ -39,9 +39,15 @@ Installing a UPS into a compact cabinet can be tricky. The [APC Back UPS BX700U-
 
 ### Network devices
 
-WAN ISP Router
-LAN unmanaged switch
-WLAN Access Point
+This setup describes a low budget networking setup. No WLANs or network separation of any sorts.
+
+#### WAN ISP Router
+
+#### LAN unmanaged switch
+
+#### WLAN Access Point
+
+#### WLAN Rescue Access Point
 
 
 ### Servers
