@@ -69,9 +69,47 @@ You may want to use a device that can take advantage of the higher bandwidth. Wi
 
 #### WLAN Rescue Access Point
 
-This can be useful in case if your Proxmox cluster is unavailable.
+This can be useful in case if your Proxmox cluster is unavailable. A Wi-Fi enabled single board computer or any router hardware with OpenWrt can be a good candidate for a second access point.
+
+Here is a guide to get a Ravpower RP-WD02 setup: https://openwrt.org/toh/ravpower/rp-wd02
+
+> Ensure that the access points radio channels are not interfering.
+
 
 ### Servers
+
+#### USFF
+
+##### Dell, Lenovo, HP
+
+These are some of the best options for homelab builds in 2021. STH produces amazing content on this. Check out [Project TinyMiniMicro](https://www.servethehome.com/introducing-project-tinyminimicro-home-lab-revolution/).
+
+3rd/4th generation Intel Core CPUs are some of the best entry level options.
+6th/7th gens are only recommended if you can find them for cheap.
+8th gen and later are typically good value albeit slightly more expensive than the rest. Keep in mind that their higher core count can help to reduce the power consumption and heat produced (this can result in less cluster nodes). 
+
+Generic buying advice:
+
+- Try to avoid CPUs with less than 4 threads.
+- Aim for 35W or lower TDP. Unless you have a great game plan for cooling.
+- The more memory slots, the better. Having only one may end up very limiting.
+- USB 3 is a must. Depending on your storage and networking needs, you may need more than two.
+- mSATA and M.2 slots are great ways to add more storage without adding more USB disks.
+
+
+##### Custom builds
+
+These are very similar to branded builds except for:
+
+- More customization and expansion options (more network connectivity, storage, ram etc.)
+- Slightly bigger form factor (unless you are willing to spend a whole lot more)
+- Larger external power supply (depending on the brand)
+- You have to build them :)
+
+
+#### ARM SBCs
+
+Limited performance compared to x64 machines, as of 2021. There is no easy way to run Proxmox on these. Their low power consumption makes them an ideal arbiter device though.
 
 
 ## Host Operating Systems
