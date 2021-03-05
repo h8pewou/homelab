@@ -1,4 +1,4 @@
-# Guide to build your tiny Homelab
+# Illustrated guide to build a tiny Homelab
 Building a low power hyperconverged Homelab on a tight budget.
 
 ## Physical Infrastructure
