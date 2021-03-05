@@ -43,12 +43,33 @@ This setup describes a low budget networking setup. No WLANs or network separati
 
 #### WAN ISP Router
 
+Standard issue WAN ISP fiber router with 1 Gbe uplink and a handful of gigabit ethernet ports. For best results disable all services and Wi-Fi. Turn on automatic updates. Change all passwords. Use it as a basic modem and wired router. Check on it periodically to ensure that the latest firmware is installed and services and WiFi remained turned off.
+
+> TODO: automate this.
+
 #### LAN unmanaged switch
+
+<p align="center">
+  <img width="300" src="https://static.tp-link.com/TL-SG1008D(UN)8.0-04_1499931192439k.jpg"><br />
+  TP-Link TL-SG1008D switch - back
+</p>
+
+Almost any cheap unmanaged gigabit switch will do a fantastic job in this setup. As an example the [TP-Link TL-SG1008D switch](https://www.tp-link.com/us/home-networking/8-port-switch/tl-sg1008d/) has eight gigabit ports, consumes almost no power and it requires no configuration. It is also super cheap.
 
 #### WLAN Access Point
 
+You may want to use a device that can take advantage of the higher bandwidth. Wi-Fi 6 devices are broadly available as of 2021. Setting these up should be fairly straightforward:
+
+- Set the device up in bridge mode (i.e. do not use routing/NAT)
+- Turn off all services
+- Use the highest available encryption
+- Use long passphrases as passwords
+- Keep the firmware up-to-date
+
+
 #### WLAN Rescue Access Point
 
+This can be useful in case if your Proxmox cluster is unavailable.
 
 ### Servers
 
