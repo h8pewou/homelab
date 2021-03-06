@@ -109,19 +109,35 @@ These are very similar to branded builds except for:
 
 #### ARM SBCs
 
-Limited performance compared to x64 machines, as of 2021. There is no easy way to run Proxmox on these. Their low power consumption makes them an ideal arbiter device though.
+Limited performance compared to x64 machines, as of 2021. There is no easy way to run Proxmox on these. Their low power consumption makes them ideal arbiter devices though.
 
 
 ## Host Operating Systems
 
+Mostly free and open source operating systems, ideal for homelab use.
+
 ### Proxmox Virtual Environment
+
+Proxmox Virtual Environment is a server virtualization management platform. It is a Debian-based Linux distribution with a modified Ubuntu LTS kernel and allows deployment and management of virtual machines and containers. Download ISO images from [here](https://proxmox.com/en/downloads/category/iso-images-pve). 
+
+They also have great documentation. Clicking help in their UI actually works (even without internet). You can also download their admin guide [as a pdf](https://proxmox.com/en/downloads/category/documentation-pve). 
+
 
 ### Armbian
 
+Armbian is a Debian and Ubuntu based computer operating system for ARM development boards. Check supported devices [here](https://www.armbian.com/download/?device_support=Supported) and if you have one already, head over [here](https://docs.armbian.com/User-Guide_Getting-Started/).
+
+In this guide, this will be setup as an arbiter host.
 
 ## Clustering
 
+This guide will focus on a simple high availability setup for home use.
+
+
 ### Corosync
+
+The Corosync Cluster Engine is a Group Communication System with additional features for implementing high availability within applications. Proxmox has fairly straightforward implementation of this that can be configured from the GUI.
+
 
 ### GlusterFS
 
