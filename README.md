@@ -39,7 +39,7 @@ Detailed description of hardware used in this project.
 ### WAN
 * **pve**: Intel i5-7500T, 16 GB DDR4 RAM, 16 GB mSATA SSD, 500 GB SATA SSD, 500 GB SATA HDD, 2x Gigabit LAN, 1x 2.5 Gigabit LAN
   * USB **Z-Wave Controller**: Sigma Designs, Inc. Aeotec Z-Stick Gen5 (ZW090) - UZB
-* **pve-lite**: Intel i3-4350T, 12 GB DDR3L RAM, 250 GB USB HDD, 500 GB SATA SSD, 500 GB USB HDD, 2x Gigabit LAN, 1x 2.5 Gigabit LAN
+* **pve-lite**: Intel i3-4350T, 16 GB DDR3L RAM, 250 GB USB HDD, 500 GB SATA SSD, 500 GB USB HDD, 2x Gigabit LAN, 1x 2.5 Gigabit LAN
 * **arbiter**: Rokchip RK3328, 1 GB DDR4 RAM, 32 GB micro SD card, 1x Gigabit LAN
   * USB **UPS**: APC Back-UPS XS 700U
 * **ravpower**: Ralink RT5350, 32 MB SDRAM, 8 MB SPI Flash, 8 GB micro SD card, 1x 100M LAN, 1x WIFI
