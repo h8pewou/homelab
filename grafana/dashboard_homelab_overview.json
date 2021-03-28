@@ -1,0 +1,4674 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "description": "Display data from  Proxmox hosts, Qdevice node,  Guest machines, and environmental measurements.",
+    "editable": true,
+    "gnetId": 10048,
+    "graphTooltip": 0,
+    "id": 10,
+    "links": [],
+    "panels": [
+      {
+        "cacheTimeout": null,
+        "datasource": "Proxmox",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 3600
+                },
+                {
+                  "color": "green",
+                  "value": 86400
+                }
+              ]
+            },
+            "unit": "dtdurations"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 0,
+          "y": 0
+        },
+        "hideTimeOverride": true,
+        "id": 16,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "system",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "uptime"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve"
+              }
+            ]
+          }
+        ],
+        "timeFrom": "15m",
+        "timeShift": null,
+        "title": "PVE Host Uptime",
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "Proxmox",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "green",
+                  "value": 4
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 3,
+          "y": 0
+        },
+        "hideTimeOverride": true,
+        "id": 58,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "cpustat",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "cpus"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve"
+              }
+            ]
+          }
+        ],
+        "timeFrom": "15m",
+        "timeShift": null,
+        "title": "PVE Threads",
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "Proxmox",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "decimals": 0,
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "green",
+                  "value": 15500000000
+                }
+              ]
+            },
+            "unit": "bytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 6,
+          "y": 0
+        },
+        "hideTimeOverride": true,
+        "id": 60,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "memory",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "memtotal"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve"
+              }
+            ]
+          }
+        ],
+        "timeFrom": "15m",
+        "timeShift": null,
+        "title": "PVE Total Memory",
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "Proxmox",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "decimals": 1,
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "max": 1,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#73BF69",
+                  "value": null
+                },
+                {
+                  "color": "rgba(237, 129, 40, 0.89)",
+                  "value": 0.1
+                },
+                {
+                  "color": "#d44a3a",
+                  "value": 0.5
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 9,
+          "y": 0
+        },
+        "id": 10,
+        "interval": "",
+        "links": [],
+        "maxDataPoints": 30,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "cpustat",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "wait"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "PVE I/O Wait",
+        "type": "stat"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Proxmox",
+        "decimals": 1,
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            },
+            "unit": "short"
+          },
+          "overrides": []
+        },
+        "fill": 10,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 6,
+          "w": 6,
+          "x": 12,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 9,
+        "interval": null,
+        "legend": {
+          "alignAsTable": false,
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "rightSide": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 0,
+        "links": [],
+        "maxDataPoints": 100,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "PVE",
+            "groupBy": [],
+            "measurement": "cpustat",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "avg1"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve"
+              }
+            ]
+          },
+          {
+            "alias": "PVE-LITE",
+            "groupBy": [],
+            "measurement": "cpustat",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "avg1"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve-lite"
+              }
+            ]
+          }
+        ],
+        "thresholds": [
+          {
+            "$$hashKey": "object:8745",
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 10,
+            "yaxis": "left"
+          },
+          {
+            "$$hashKey": "object:8751",
+            "colorMode": "warning",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 4,
+            "yaxis": "left"
+          }
+        ],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "PVE Cluster Load Averages (1 Minute)",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:8192",
+            "decimals": 0,
+            "format": "short",
+            "label": "",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:8193",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "datasource": "servermonitor",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "decimals": 0,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 3600
+                },
+                {
+                  "color": "green",
+                  "value": 84600
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 2,
+          "x": 18,
+          "y": 0
+        },
+        "hideTimeOverride": true,
+        "id": 84,
+        "interval": "5m",
+        "maxDataPoints": 10,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "system",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "uptime"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "arbiter"
+              }
+            ]
+          }
+        ],
+        "timeFrom": "15m",
+        "timeShift": null,
+        "title": "Arbiter Uptime",
+        "type": "stat"
+      },
+      {
+        "datasource": "servermonitor",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "decimals": 1,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 2,
+          "x": 20,
+          "y": 0
+        },
+        "id": 85,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "cpu",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT (\"usage_idle\" -100)*-1 FROM \"cpu\" WHERE (\"host\" = 'arbiter') AND $timeFilter",
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "usage_idle"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [
+                    "-100"
+                  ],
+                  "type": "math"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "Nexbox"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Arbiter CPUs",
+        "type": "stat"
+      },
+      {
+        "datasource": null,
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 2,
+          "x": 22,
+          "y": 0
+        },
+        "id": 88,
+        "options": {
+          "bgColor": "rgba(28, 28, 28, 0)",
+          "clockType": "custom",
+          "countdownSettings": {
+            "endCountdownTime": "2021-01-03T04:41:51+01:00",
+            "endText": "00:00:00"
+          },
+          "dateSettings": {
+            "dateFormat": "MMM D",
+            "fontSize": "20px",
+            "fontWeight": "normal",
+            "showDate": false
+          },
+          "mode": "time",
+          "timeSettings": {
+            "customFormat": "HH:mm",
+            "fontSize": "36px",
+            "fontWeight": "bold"
+          },
+          "timezone": "",
+          "timezoneSettings": {
+            "fontSize": "12px",
+            "fontWeight": "normal",
+            "showTimezone": false,
+            "zoneFormat": "offsetAbbv"
+          }
+        },
+        "pluginVersion": "7.3.6",
+        "targets": [
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Local Time",
+        "type": "grafana-clock-panel"
+      },
+      {
+        "columns": [],
+        "datasource": "Proxmox",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fontSize": "100%",
+        "gridPos": {
+          "h": 11,
+          "w": 3,
+          "x": 0,
+          "y": 3
+        },
+        "hideTimeOverride": true,
+        "id": 8,
+        "interval": "",
+        "links": [],
+        "maxDataPoints": 5,
+        "pageSize": null,
+        "scroll": true,
+        "showHeader": true,
+        "sort": {
+          "col": 1,
+          "desc": false
+        },
+        "styles": [
+          {
+            "$$hashKey": "object:12970",
+            "alias": "Time",
+            "align": "auto",
+            "colorMode": null,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(237, 129, 40, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "decimals": 2,
+            "mappingType": 1,
+            "pattern": "Time",
+            "thresholds": [],
+            "type": "hidden",
+            "unit": "short"
+          },
+          {
+            "$$hashKey": "object:12971",
+            "alias": "Uptime",
+            "align": "auto",
+            "colorMode": "row",
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(237, 129, 40, 0.89)",
+              "rgba(0, 0, 0, 0.97)"
+            ],
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "decimals": 0,
+            "mappingType": 1,
+            "pattern": "uptime",
+            "thresholds": [
+              "3600",
+              "86400"
+            ],
+            "type": "number",
+            "unit": "s"
+          },
+          {
+            "$$hashKey": "object:12972",
+            "alias": "Hostname",
+            "align": "auto",
+            "colorMode": null,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(237, 129, 40, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "decimals": 2,
+            "mappingType": 1,
+            "pattern": "host",
+            "sanitize": true,
+            "thresholds": [],
+            "type": "string",
+            "unit": "short",
+            "valueMaps": []
+          }
+        ],
+        "targets": [
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              }
+            ],
+            "limit": "1",
+            "measurement": "system",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(uptime) AS \"uptime\" FROM \"system\" WHERE ((\"object\" = 'lxc') OR (\"object\" = 'qemu')) AND (\"nodename\" = 'pve') AND time > (now() - 10m) AND uptime > 0 GROUP BY \"host\" limit 1",
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "uptime"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [
+                    "uptime"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "object",
+                "operator": "=",
+                "value": "qemu"
+              }
+            ]
+          }
+        ],
+        "timeFrom": "15m",
+        "timeShift": null,
+        "title": "PVE Guests",
+        "transform": "table",
+        "type": "table-old"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "Proxmox",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "decimals": 1,
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "max": 1,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#73BF69",
+                  "value": null
+                },
+                {
+                  "color": "rgba(237, 129, 40, 0.89)",
+                  "value": 0.5
+                },
+                {
+                  "color": "#d44a3a",
+                  "value": 0.75
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 3,
+          "y": 3
+        },
+        "id": 2,
+        "interval": "",
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "cpustat",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "cpu"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "PVE CPUs",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "Proxmox",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "decimals": 1,
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "max": 16,
+            "min": 0,
+            "thresholds": {
+              "mode": "percentage",
+              "steps": [
+                {
+                  "color": "#73BF69",
+                  "value": null
+                },
+                {
+                  "color": "rgba(237, 129, 40, 0.89)",
+                  "value": 80
+                },
+                {
+                  "color": "#d44a3a",
+                  "value": 90
+                }
+              ]
+            },
+            "unit": "gbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 6,
+          "y": 3
+        },
+        "id": 11,
+        "interval": "",
+        "links": [],
+        "maxDataPoints": 30,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "memory",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "memused"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [
+                    "/ 1073741824"
+                  ],
+                  "type": "math"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "PVE Used Memory",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "Proxmox",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "decimals": 0,
+            "mappings": [],
+            "max": 1,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#299c46",
+                  "value": null
+                },
+                {
+                  "color": "rgba(237, 129, 40, 0.89)",
+                  "value": 0.75
+                },
+                {
+                  "color": "#d44a3a",
+                  "value": 0.875
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "gluster_vol0"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "gluster"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 9,
+          "y": 3
+        },
+        "hideTimeOverride": true,
+        "id": 54,
+        "interval": "",
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "displayMode": "lcd",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true,
+          "text": {}
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "alias": "$tag_host",
+            "groupBy": [
+              {
+                "params": [
+                  "nodename"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              }
+            ],
+            "hide": false,
+            "measurement": "system",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(\"used\")/last(\"total\") FROM \"system\" WHERE (\"nodename\" = 'pve') AND $timeFilter GROUP BY \"nodename\", \"host\"",
+            "rawQuery": true,
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "used"
+                  ],
+                  "type": "field"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "total"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": "15m",
+        "timeShift": null,
+        "title": "PVE Storage Usage",
+        "transparent": true,
+        "type": "bargauge"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "servermonitor",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "green",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 18,
+          "y": 3
+        },
+        "hideTimeOverride": true,
+        "id": 110,
+        "interval": "",
+        "links": [],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "alias": "$tag_host",
+            "groupBy": [
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              }
+            ],
+            "measurement": "docker",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "n_containers_running"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Docker Containers",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "-- Mixed --",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            },
+            "unit": "celsius"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "pve coretemp_packageid0_input"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "pve cpu"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "pve-lite coretemp_packageid0_input"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "pve-lite cpu"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "pve nct6776_systin_input"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "pve chassis"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byRegexp",
+                "options": "/.fan/"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "rotrpm"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "arbiter soc_thermal_input"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "arbiter cpu"
+                }
+              ]
+            }
+          ]
+        },
+        "fill": 0,
+        "fillGradient": 1,
+        "gridPos": {
+          "h": 9,
+          "w": 6,
+          "x": 12,
+          "y": 6
+        },
+        "hiddenSeries": false,
+        "id": 105,
+        "legend": {
+          "alignAsTable": false,
+          "avg": false,
+          "current": true,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "rightSide": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:3293",
+            "alias": "arbiter cpu",
+            "color": "#C4162A"
+          },
+          {
+            "$$hashKey": "object:3301",
+            "alias": "pve cpu",
+            "color": "#FFA6B0"
+          },
+          {
+            "$$hashKey": "object:3311",
+            "alias": "pve-lite cpu",
+            "color": "#FF7383"
+          },
+          {
+            "$$hashKey": "object:3360",
+            "alias": "pve-lite sda",
+            "color": "#FFF899"
+          },
+          {
+            "$$hashKey": "object:3368",
+            "alias": "pve-lite sdb",
+            "color": "#FA6400",
+            "dashes": true,
+            "spaceLength": 3
+          },
+          {
+            "$$hashKey": "object:3380",
+            "alias": "pve sdb",
+            "color": "#FF780A"
+          },
+          {
+            "$$hashKey": "object:3408",
+            "alias": "pve chassis",
+            "color": "#B877D9",
+            "dashes": true,
+            "spaceLength": 3
+          },
+          {
+            "$$hashKey": "object:3430",
+            "alias": "ambient sensor",
+            "color": "#8F3BB8",
+            "dashes": true
+          },
+          {
+            "$$hashKey": "object:649",
+            "alias": "pve_cpu_fan.fanspeed",
+            "color": "#C8F2C2",
+            "yaxis": 2
+          },
+          {
+            "$$hashKey": "object:656",
+            "alias": "rack_fan.fanspeed",
+            "color": "#56A64B",
+            "yaxis": 2
+          },
+          {
+            "$$hashKey": "object:236",
+            "alias": "pve-lite sdc",
+            "color": "#FFB357"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "ambient sensor",
+            "datasource": "InfluxDB",
+            "groupBy": [],
+            "hide": false,
+            "measurement": "°C",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT \"value\" FROM \"autogen\".\"°C\" WHERE (\"entity_id\" = 'pve_cpu_temperature') AND $timeFilter",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "entity_id",
+                "operator": "=",
+                "value": "entrance_door_sensor_air_temperature"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_host $tag_sensor",
+            "datasource": "servermonitor",
+            "groupBy": [
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "sensor"
+                ],
+                "type": "tag"
+              }
+            ],
+            "measurement": "temp",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT \"temp\" FROM \"autogen\".\"temp\" WHERE ((\"sensor\" =~ /.input/ AND \"sensor\" !~ /.pch/ AND \"sensor\" !~ /.auxtin/ AND \"sensor\" !=  'acpitz_input' AND \"sensor\" !~ /._core/ AND \"sensor\" !~ /.skylake/ AND \"sensor\" !~ /.peciagent/) OR \"sensor\" = 'soc_thermal') AND $timeFilter GROUP BY \"host\", \"sensor\"",
+            "rawQuery": true,
+            "refId": "G",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "temp"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor",
+                "operator": "=~",
+                "value": "/.input/"
+              },
+              {
+                "condition": "OR",
+                "key": "sensor",
+                "operator": "=",
+                "value": "soc_thermal"
+              },
+              {
+                "condition": "AND",
+                "key": "sensor",
+                "operator": "=",
+                "value": "select tag value"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_host $tag_device",
+            "datasource": "servermonitor",
+            "groupBy": [
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "device"
+                ],
+                "type": "tag"
+              }
+            ],
+            "measurement": "smart_device",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT \"temp_c\" FROM \"smart_device\" WHERE $timeFilter GROUP BY \"host\", \"device\"",
+            "rawQuery": true,
+            "refId": "H",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "temp_c"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "datasource": "servermonitor",
+            "groupBy": [],
+            "hide": true,
+            "measurement": "/.fan/",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "fanspeed"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [
+          {
+            "$$hashKey": "object:5949",
+            "colorMode": "warning",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 65,
+            "yaxis": "left"
+          },
+          {
+            "$$hashKey": "object:5950",
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 70,
+            "yaxis": "left"
+          }
+        ],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Homelab Temperatures",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:5925",
+            "decimals": null,
+            "format": "celsius",
+            "label": "",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:5926",
+            "decimals": 1,
+            "format": "rotrpm",
+            "label": "",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": true,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "-- Mixed --",
+        "decimals": 0,
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            },
+            "unit": "bits"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ping_latency"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "ms"
+                },
+                {
+                  "id": "displayName",
+                  "value": "Latency"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "download_bandwidth"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Download"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "upload_bandwidth"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Upload"
+                }
+              ]
+            }
+          ]
+        },
+        "fill": 10,
+        "fillGradient": 10,
+        "gridPos": {
+          "h": 7,
+          "w": 6,
+          "x": 18,
+          "y": 7
+        },
+        "hiddenSeries": false,
+        "id": 99,
+        "legend": {
+          "alignAsTable": false,
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "rightSide": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": false
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:3545",
+            "alias": "Latency",
+            "color": "#F2495C",
+            "dashes": true,
+            "fillGradient": 10,
+            "yaxis": 2
+          },
+          {
+            "$$hashKey": "object:5792",
+            "alias": "Download"
+          },
+          {
+            "$$hashKey": "object:5800",
+            "alias": "Upload"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$col",
+            "datasource": "servermonitor",
+            "groupBy": [],
+            "measurement": "Speedtest",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT \"download_bandwidth\"*8, \"upload_bandwidth\"*8, \"ping_latency\" FROM \"Speedtest\" WHERE $timeFilter",
+            "rawQuery": true,
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "download_bandwidth"
+                  ],
+                  "type": "field"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "upload_bandwidth"
+                  ],
+                  "type": "field"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "ping_latency"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Homelab LAN Internet Access",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "transparent": true,
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1070",
+            "decimals": 0,
+            "format": "bits",
+            "label": "",
+            "logBase": 1,
+            "max": "1200000000",
+            "min": "0",
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1071",
+            "decimals": 0,
+            "format": "ms",
+            "label": "",
+            "logBase": 1,
+            "max": "100",
+            "min": "0",
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": true,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Proxmox",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {},
+            "custom": {},
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            },
+            "unit": "binbps"
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 1,
+        "gridPos": {
+          "h": 6,
+          "w": 9,
+          "x": 3,
+          "y": 8
+        },
+        "hiddenSeries": false,
+        "id": 76,
+        "interval": null,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "maxDataPoints": 10000,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:2522",
+            "alias": "/.*Tx/",
+            "transform": "negative-Y"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "WAN0 Rx",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "nics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_derivative(mean(\"receive\"), 10s) AS \"Rx\", non_negative_derivative(mean(\"receive\"), 10s) AS \"Tx\" FROM \"nics\" WHERE (\"host\" =~ /^$server$/ AND \"instance\" = 'enp2s0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "receive"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                },
+                {
+                  "params": [
+                    "Rx"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve"
+              },
+              {
+                "condition": "AND",
+                "key": "instance",
+                "operator": "=",
+                "value": "enp3s0"
+              }
+            ]
+          },
+          {
+            "alias": "WAN0 Tx",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "nics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "transmit"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve"
+              },
+              {
+                "condition": "AND",
+                "key": "instance",
+                "operator": "=",
+                "value": "enp3s0"
+              }
+            ]
+          },
+          {
+            "alias": "LAN0 Rx",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "nics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_derivative(mean(\"receive\"), 10s) AS \"Rx\", non_negative_derivative(mean(\"receive\"), 10s) AS \"Tx\" FROM \"nics\" WHERE (\"host\" =~ /^$server$/ AND \"instance\" = 'enp2s0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "receive"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                },
+                {
+                  "params": [
+                    "Rx"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve"
+              },
+              {
+                "condition": "AND",
+                "key": "instance",
+                "operator": "=",
+                "value": "enp0s31f6"
+              }
+            ]
+          },
+          {
+            "alias": "LAN0 Tx",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "nics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "transmit"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve"
+              },
+              {
+                "condition": "AND",
+                "key": "instance",
+                "operator": "=",
+                "value": "enp0s31f6"
+              }
+            ]
+          },
+          {
+            "alias": "DMZ0 Rx",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "nics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_derivative(mean(\"receive\"), 10s) AS \"Rx\", non_negative_derivative(mean(\"receive\"), 10s) AS \"Tx\" FROM \"nics\" WHERE (\"host\" =~ /^$server$/ AND \"instance\" = 'enp2s0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "E",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "receive"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                },
+                {
+                  "params": [
+                    "Rx"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve"
+              },
+              {
+                "condition": "AND",
+                "key": "instance",
+                "operator": "=",
+                "value": "vmbr2"
+              }
+            ]
+          },
+          {
+            "alias": "DMZ0 Tx",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "nics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_derivative(mean(\"receive\"), 10s) AS \"Rx\", non_negative_derivative(mean(\"receive\"), 10s) AS \"Tx\" FROM \"nics\" WHERE (\"host\" =~ /^$server$/ AND \"instance\" = 'enp2s0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "F",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "transmit"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve"
+              },
+              {
+                "condition": "AND",
+                "key": "instance",
+                "operator": "=",
+                "value": "vmbr2"
+              }
+            ]
+          },
+          {
+            "alias": "2.5G Rx",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "nics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_derivative(mean(\"receive\"), 10s) AS \"Rx\", non_negative_derivative(mean(\"receive\"), 10s) AS \"Tx\" FROM \"nics\" WHERE (\"host\" =~ /^$server$/ AND \"instance\" = 'enp2s0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "G",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "receive"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                },
+                {
+                  "params": [
+                    "Rx"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve"
+              },
+              {
+                "condition": "AND",
+                "key": "instance",
+                "operator": "=",
+                "value": "enx002427880297"
+              }
+            ]
+          },
+          {
+            "alias": "2.5G Tx",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "nics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_derivative(mean(\"receive\"), 10s) AS \"Rx\", non_negative_derivative(mean(\"receive\"), 10s) AS \"Tx\" FROM \"nics\" WHERE (\"host\" =~ /^$server$/ AND \"instance\" = 'enp2s0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "H",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "transmit"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve"
+              },
+              {
+                "condition": "AND",
+                "key": "instance",
+                "operator": "=",
+                "value": "enx002427880297"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "PVE NICs",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "transparent": true,
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:3247",
+            "decimals": 0,
+            "format": "binbps",
+            "label": "",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:3248",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "Proxmox",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 3600
+                },
+                {
+                  "color": "green",
+                  "value": 86400
+                }
+              ]
+            },
+            "unit": "dtdurations"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 0,
+          "y": 14
+        },
+        "hideTimeOverride": true,
+        "id": 65,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "system",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "uptime"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve-lite"
+              }
+            ]
+          }
+        ],
+        "timeFrom": "15m",
+        "timeShift": null,
+        "title": "PVE-LITE Host Uptime",
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "Proxmox",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "green",
+                  "value": 4
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 3,
+          "y": 14
+        },
+        "hideTimeOverride": true,
+        "id": 63,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "cpustat",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "cpus"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve-lite"
+              }
+            ]
+          }
+        ],
+        "timeFrom": "15m",
+        "timeShift": null,
+        "title": "PVE-LITE Threads",
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "Proxmox",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "decimals": 0,
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "green",
+                  "value": 11600000000
+                }
+              ]
+            },
+            "unit": "bytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 6,
+          "y": 14
+        },
+        "id": 64,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "memory",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "memtotal"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve-lite"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "PVE-LITE Total Memory",
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "Proxmox",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "decimals": 1,
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "max": 1,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#73BF69",
+                  "value": null
+                },
+                {
+                  "color": "rgba(237, 129, 40, 0.89)",
+                  "value": 0.1
+                },
+                {
+                  "color": "#d44a3a",
+                  "value": 0.5
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 9,
+          "y": 14
+        },
+        "id": 70,
+        "interval": "",
+        "links": [],
+        "maxDataPoints": 288,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "cpustat",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "wait"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve-lite"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "PVE-LITE I/O Wait",
+        "type": "stat"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "servermonitor",
+        "decimals": 1,
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            }
+          },
+          "overrides": []
+        },
+        "fill": 0,
+        "fillGradient": 10,
+        "gridPos": {
+          "h": 14,
+          "w": 6,
+          "x": 18,
+          "y": 14
+        },
+        "hiddenSeries": false,
+        "id": 108,
+        "legend": {
+          "alignAsTable": false,
+          "avg": false,
+          "current": false,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "rightSide": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:955",
+            "alias": "/.percent/",
+            "color": "#E02F44",
+            "dashes": true,
+            "fill": 1,
+            "fillGradient": 1,
+            "yaxis": 2
+          },
+          {
+            "$$hashKey": "object:7851",
+            "alias": "pve-lite-storage average_response_ms",
+            "color": "#37872D"
+          },
+          {
+            "$$hashKey": "object:7861",
+            "alias": "pve-storage average_response_ms",
+            "color": "#C8F2C2"
+          },
+          {
+            "$$hashKey": "object:988",
+            "alias": "pve-lite average_response_ms",
+            "color": "#E0B400"
+          },
+          {
+            "$$hashKey": "object:1003",
+            "alias": "pve average_response_ms",
+            "color": "#FFF899"
+          },
+          {
+            "$$hashKey": "object:1011",
+            "alias": "192.168.1.3 average_response_ms",
+            "color": "#8F3BB8"
+          },
+          {
+            "$$hashKey": "object:1019",
+            "alias": "192.168.1.2 average_response_ms",
+            "color": "#DEB6F2"
+          },
+          {
+            "$$hashKey": "object:233",
+            "alias": "google.com average_response_ms",
+            "color": "#5794F2"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_url $col",
+            "groupBy": [
+              {
+                "params": [
+                  "url"
+                ],
+                "type": "tag"
+              }
+            ],
+            "measurement": "ping",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "average_response_ms"
+                  ],
+                  "type": "field"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "percent_packet_loss"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [
+          {
+            "$$hashKey": "object:962",
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 100,
+            "yaxis": "left"
+          },
+          {
+            "$$hashKey": "object:968",
+            "colorMode": "warning",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 25,
+            "yaxis": "left"
+          }
+        ],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Network Latency (WAN, LAN, and Storage)",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "transparent": true,
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:338",
+            "decimals": 1,
+            "format": "ms",
+            "label": "",
+            "logBase": 1,
+            "max": null,
+            "min": "0",
+            "show": true
+          },
+          {
+            "$$hashKey": "object:339",
+            "decimals": 0,
+            "format": "percent",
+            "label": "",
+            "logBase": 1,
+            "max": "100",
+            "min": "0",
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": true,
+          "alignLevel": 0
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "servermonitor",
+        "fieldConfig": {
+          "defaults": {
+            "color": {},
+            "custom": {},
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            },
+            "unit": "rotrpm"
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 7,
+        "gridPos": {
+          "h": 6,
+          "w": 6,
+          "x": 12,
+          "y": 15
+        },
+        "hiddenSeries": false,
+        "id": 112,
+        "interval": null,
+        "legend": {
+          "avg": false,
+          "current": true,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Homelab Rack Fan",
+            "groupBy": [
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              }
+            ],
+            "measurement": "rack_fan",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "fanspeed"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "alias": "PVE CPU Fan",
+            "groupBy": [
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              }
+            ],
+            "hide": false,
+            "measurement": "pve_cpu_fan",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "fanspeed"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [
+          {
+            "$$hashKey": "object:1501",
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 2800,
+            "yaxis": "left"
+          },
+          {
+            "$$hashKey": "object:1507",
+            "colorMode": "warning",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 2600,
+            "yaxis": "left"
+          }
+        ],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Homlab Cooling",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:292",
+            "decimals": null,
+            "format": "rotrpm",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:293",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "columns": [],
+        "datasource": "Proxmox",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fontSize": "100%",
+        "gridPos": {
+          "h": 11,
+          "w": 3,
+          "x": 0,
+          "y": 17
+        },
+        "hideTimeOverride": true,
+        "id": 71,
+        "interval": "",
+        "links": [],
+        "maxDataPoints": 5,
+        "pageSize": null,
+        "scroll": true,
+        "showHeader": true,
+        "sort": {
+          "col": 1,
+          "desc": false
+        },
+        "styles": [
+          {
+            "$$hashKey": "object:12970",
+            "alias": "Time",
+            "align": "auto",
+            "colorMode": null,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(237, 129, 40, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "decimals": 2,
+            "link": false,
+            "mappingType": 1,
+            "pattern": "Time",
+            "thresholds": [],
+            "type": "hidden",
+            "unit": "short"
+          },
+          {
+            "$$hashKey": "object:12971",
+            "alias": "Uptime",
+            "align": "auto",
+            "colorMode": "row",
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(237, 129, 40, 0.89)",
+              "rgba(0, 0, 0, 0.97)"
+            ],
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "decimals": 0,
+            "mappingType": 1,
+            "pattern": "uptime",
+            "thresholds": [
+              "3600",
+              "86400"
+            ],
+            "type": "number",
+            "unit": "s"
+          },
+          {
+            "$$hashKey": "object:12972",
+            "alias": "Hostname",
+            "align": "auto",
+            "colorMode": null,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(237, 129, 40, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "decimals": 2,
+            "mappingType": 1,
+            "pattern": "host",
+            "sanitize": true,
+            "thresholds": [],
+            "type": "string",
+            "unit": "short",
+            "valueMaps": []
+          }
+        ],
+        "targets": [
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              }
+            ],
+            "limit": "1",
+            "measurement": "system",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(uptime) AS \"uptime\" FROM \"system\" WHERE ((\"object\" = 'lxc') OR (\"object\" = 'qemu')) AND (\"nodename\" = 'pve-lite') AND time > (now() - 10m) AND uptime > 0 GROUP BY \"host\" limit 1",
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "uptime"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [
+                    "uptime"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "object",
+                "operator": "=",
+                "value": "qemu"
+              }
+            ]
+          }
+        ],
+        "timeFrom": "15m",
+        "timeShift": null,
+        "title": "PVE-LITE Guests",
+        "transform": "table",
+        "type": "table-old"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "Proxmox",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "decimals": 1,
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "max": 1,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#73BF69",
+                  "value": null
+                },
+                {
+                  "color": "rgba(237, 129, 40, 0.89)",
+                  "value": 0.5
+                },
+                {
+                  "color": "#d44a3a",
+                  "value": 0.75
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 3,
+          "y": 17
+        },
+        "id": 69,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "cpustat",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "cpu"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve-lite"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "PVE-LITE CPUs",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "Proxmox",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "decimals": 1,
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "max": 16,
+            "min": 0,
+            "thresholds": {
+              "mode": "percentage",
+              "steps": [
+                {
+                  "color": "#73BF69",
+                  "value": null
+                },
+                {
+                  "color": "rgba(237, 129, 40, 0.89)",
+                  "value": 80
+                },
+                {
+                  "color": "#d44a3a",
+                  "value": 90
+                }
+              ]
+            },
+            "unit": "gbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 6,
+          "y": 17
+        },
+        "id": 67,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "memory",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "memused"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [
+                    "/ 1073741824"
+                  ],
+                  "type": "math"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve-lite"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "PVE-LITE Used Memory",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "Proxmox",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "decimals": 0,
+            "mappings": [],
+            "max": 1,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#299c46",
+                  "value": null
+                },
+                {
+                  "color": "rgba(237, 129, 40, 0.89)",
+                  "value": 0.75
+                },
+                {
+                  "color": "#d44a3a",
+                  "value": 0.875
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "gluster_vol0"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "gluster"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 9,
+          "y": 17
+        },
+        "hideTimeOverride": true,
+        "id": 106,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "displayMode": "lcd",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true,
+          "text": {}
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "alias": "$tag_host",
+            "groupBy": [
+              {
+                "params": [
+                  "nodename"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              }
+            ],
+            "hide": false,
+            "measurement": "system",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(\"used\")/last(\"total\") FROM \"system\" WHERE (\"nodename\" = 'pve-lite') AND $timeFilter GROUP BY \"nodename\", \"host\"",
+            "rawQuery": true,
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "used"
+                  ],
+                  "type": "field"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "total"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": "15m",
+        "timeShift": null,
+        "title": "PVE-LITE Storage Usage",
+        "transformations": [],
+        "transparent": true,
+        "type": "bargauge"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "servermonitor",
+        "decimals": 0,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "unit": "watt"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Battery Charge"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percent"
+                }
+              ]
+            }
+          ]
+        },
+        "fill": 1,
+        "fillGradient": 1,
+        "gridPos": {
+          "h": 7,
+          "w": 6,
+          "x": 12,
+          "y": 21
+        },
+        "hiddenSeries": false,
+        "id": 103,
+        "interval": null,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "maxDataPoints": null,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:1856",
+            "alias": "Battery Charge",
+            "color": "#73BF69",
+            "dashes": true,
+            "fillBelowTo": "Electrical Load",
+            "yaxis": 2
+          },
+          {
+            "$$hashKey": "object:2130",
+            "alias": "Electrical Load",
+            "color": "#FADE2A"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Electrical Load",
+            "groupBy": [],
+            "measurement": "apcupsd",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT ((max(\"nominal_power\")* max(\"load_percent\"))/100) FROM \"autogen\".\"apcupsd\" WHERE $timeFilter GROUP BY time(5m)",
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "nominal_power"
+                  ],
+                  "type": "field"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "load_percent"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "alias": "Battery Charge",
+            "groupBy": [
+              {
+                "params": [
+                  "5m"
+                ],
+                "type": "time"
+              }
+            ],
+            "measurement": "apcupsd",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT max(\"battery_charge_percent\") FROM \"apcupsd\" WHERE $timeFilter GROUP BY time(5m)",
+            "rawQuery": true,
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "battery_charge_percent"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [
+          {
+            "$$hashKey": "object:1181",
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 80,
+            "yaxis": "left"
+          },
+          {
+            "$$hashKey": "object:1187",
+            "colorMode": "warning",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 66,
+            "yaxis": "left"
+          }
+        ],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "APC Battery Electrical Load",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:105",
+            "decimals": 0,
+            "format": "watt",
+            "label": "",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:106",
+            "decimals": 0,
+            "format": "percent",
+            "label": "",
+            "logBase": 1,
+            "max": "100",
+            "min": "0",
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": true,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Proxmox",
+        "decimals": 2,
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            },
+            "unit": "binbps"
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 1,
+        "gridPos": {
+          "h": 6,
+          "w": 9,
+          "x": 3,
+          "y": 22
+        },
+        "hiddenSeries": false,
+        "id": 75,
+        "interval": null,
+        "legend": {
+          "alignAsTable": false,
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "maxDataPoints": 10000,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:3371",
+            "alias": "/.*Tx/",
+            "transform": "negative-Y"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "WAN0 Rx",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "nics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_derivative(mean(\"receive\"), 10s) AS \"Rx\", non_negative_derivative(mean(\"receive\"), 10s) AS \"Tx\" FROM \"nics\" WHERE (\"host\" =~ /^$server$/ AND \"instance\" = 'enp2s0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "receive"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                },
+                {
+                  "params": [
+                    "Rx"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve-lite"
+              },
+              {
+                "condition": "AND",
+                "key": "instance",
+                "operator": "=",
+                "value": "enx000ec6fe015f"
+              }
+            ]
+          },
+          {
+            "alias": "WAN0 Tx",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "nics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "transmit"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve-lite"
+              },
+              {
+                "condition": "AND",
+                "key": "instance",
+                "operator": "=",
+                "value": "enx000ec6fe015f"
+              }
+            ]
+          },
+          {
+            "alias": "LAN0 Rx",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "nics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_derivative(mean(\"receive\"), 10s) AS \"Rx\", non_negative_derivative(mean(\"receive\"), 10s) AS \"Tx\" FROM \"nics\" WHERE (\"host\" =~ /^$server$/ AND \"instance\" = 'enp2s0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "receive"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                },
+                {
+                  "params": [
+                    "Rx"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve-lite"
+              },
+              {
+                "condition": "AND",
+                "key": "instance",
+                "operator": "=",
+                "value": "eno1"
+              }
+            ]
+          },
+          {
+            "alias": "LAN0 Tx",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "nics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "transmit"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve-lite"
+              },
+              {
+                "condition": "AND",
+                "key": "instance",
+                "operator": "=",
+                "value": "eno1"
+              }
+            ]
+          },
+          {
+            "alias": "DMZ0 Rx",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "nics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_derivative(mean(\"receive\"), 10s) AS \"Rx\", non_negative_derivative(mean(\"receive\"), 10s) AS \"Tx\" FROM \"nics\" WHERE (\"host\" =~ /^$server$/ AND \"instance\" = 'enp2s0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "E",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "receive"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                },
+                {
+                  "params": [
+                    "Rx"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve-lite"
+              },
+              {
+                "condition": "AND",
+                "key": "instance",
+                "operator": "=",
+                "value": "vmbr2"
+              }
+            ]
+          },
+          {
+            "alias": "DMZ0 Tx",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "nics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_derivative(mean(\"receive\"), 10s) AS \"Rx\", non_negative_derivative(mean(\"receive\"), 10s) AS \"Tx\" FROM \"nics\" WHERE (\"host\" =~ /^$server$/ AND \"instance\" = 'enp2s0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "F",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "transmit"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve-lite"
+              },
+              {
+                "condition": "AND",
+                "key": "instance",
+                "operator": "=",
+                "value": "vmbr2"
+              }
+            ]
+          },
+          {
+            "alias": "2.5G Rx",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "nics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_derivative(mean(\"receive\"), 10s) AS \"Rx\", non_negative_derivative(mean(\"receive\"), 10s) AS \"Tx\" FROM \"nics\" WHERE (\"host\" =~ /^$server$/ AND \"instance\" = 'enp2s0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "G",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "receive"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                },
+                {
+                  "params": [
+                    "Rx"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve-lite"
+              },
+              {
+                "condition": "AND",
+                "key": "instance",
+                "operator": "=",
+                "value": "enxa0cec8c94da2"
+              }
+            ]
+          },
+          {
+            "alias": "2.5G Tx",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "nics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_derivative(mean(\"receive\"), 10s) AS \"Rx\", non_negative_derivative(mean(\"receive\"), 10s) AS \"Tx\" FROM \"nics\" WHERE (\"host\" =~ /^$server$/ AND \"instance\" = 'enp2s0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "H",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "transmit"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "pve-lite"
+              },
+              {
+                "condition": "AND",
+                "key": "instance",
+                "operator": "=",
+                "value": "enxa0cec8c94da2"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "PVE-LITE NICs",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "transparent": true,
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:2887",
+            "decimals": 0,
+            "format": "binbps",
+            "label": "",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:2888",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      }
+    ],
+    "refresh": "5m",
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [
+      "proxmox",
+      "homelab",
+      "qemu",
+      "lxc"
+    ],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ]
+    },
+    "timezone": "",
+    "title": "Homelab overview",
+    "uid": "kxQQuHRZj",
+    "version": 106
+  }

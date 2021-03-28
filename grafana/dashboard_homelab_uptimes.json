@@ -1,0 +1,777 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 11,
+    "links": [],
+    "panels": [
+      {
+        "datasource": "Proxmox",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "left",
+              "displayMode": "color-background",
+              "filterable": true
+            },
+            "decimals": 0,
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "rgb(20, 20, 20)",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "last"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "thresholds"
+                  }
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": null
+                      },
+                      {
+                        "color": "#EAB839",
+                        "value": 3600
+                      },
+                      {
+                        "color": "green",
+                        "value": 86400
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "displayName",
+                  "value": "uptime"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Time"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "dateTimeFromNow"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "object"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "from": "",
+                      "id": 1,
+                      "text": "Physical",
+                      "to": "",
+                      "type": 1,
+                      "value": "nodes"
+                    },
+                    {
+                      "from": "",
+                      "id": 2,
+                      "text": "VM",
+                      "to": "",
+                      "type": 1,
+                      "value": "qemu"
+                    },
+                    {
+                      "from": "",
+                      "id": 3,
+                      "text": "Container",
+                      "to": "",
+                      "type": 1,
+                      "value": "lxc"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "last_1"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percentunit"
+                },
+                {
+                  "id": "displayName",
+                  "value": "cpu"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "#EAB839",
+                        "value": 24
+                      },
+                      {
+                        "color": "red",
+                        "value": 49
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 18,
+          "w": 15,
+          "x": 0,
+          "y": 0
+        },
+        "id": 2,
+        "options": {
+          "frameIndex": 1,
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": false,
+              "displayName": "nodename"
+            }
+          ]
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "alias": "$tag_nodename $tag_host",
+            "groupBy": [
+              {
+                "params": [
+                  "nodename"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "object"
+                ],
+                "type": "tag"
+              }
+            ],
+            "measurement": "system",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "D",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "uptime"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "cpu"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              }
+            ],
+            "measurement": "cpustat",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "cpu"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Proxmox uptimes",
+        "transformations": [
+          {
+            "id": "seriesToColumns",
+            "options": {
+              "byField": "host"
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time 2": true
+              },
+              "indexByName": {
+                "Time 1": 0,
+                "Time 2": 7,
+                "host": 2,
+                "last 1": 4,
+                "last 2": 6,
+                "last_1": 5,
+                "nodename": 1,
+                "object": 3
+              },
+              "renameByName": {
+                "Time 1": "Time",
+                "last 1": "last",
+                "last 2": "last_1"
+              }
+            }
+          }
+        ],
+        "transparent": true,
+        "type": "table"
+      },
+      {
+        "datasource": "servermonitor",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "left",
+              "displayMode": "color-background",
+              "filterable": true
+            },
+            "decimals": 0,
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "rgb(20, 20, 20)",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "last"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "thresholds"
+                  }
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": null
+                      },
+                      {
+                        "color": "#EAB839",
+                        "value": 3600
+                      },
+                      {
+                        "color": "green",
+                        "value": 86400
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "displayName",
+                  "value": "uptime"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Time"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "dateTimeFromNow"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "last_1"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "short"
+                },
+                {
+                  "id": "decimals",
+                  "value": 0
+                },
+                {
+                  "id": "displayName",
+                  "value": "cpu load (1 min)"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "#EAB839",
+                        "value": 2
+                      },
+                      {
+                        "color": "red",
+                        "value": 3
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 9,
+          "x": 15,
+          "y": 0
+        },
+        "id": 10,
+        "options": {
+          "frameIndex": 2,
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": false,
+              "displayName": "nodename"
+            }
+          ]
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "alias": "$tag_host",
+            "groupBy": [
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              }
+            ],
+            "hide": false,
+            "measurement": "system",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "uptime"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "load1"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "Nexbox"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Other hosts uptimes",
+        "transparent": true,
+        "type": "table"
+      },
+      {
+        "datasource": "servermonitor",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "left",
+              "displayMode": "color-background",
+              "filterable": true
+            },
+            "decimals": 0,
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "rgb(20, 20, 20)",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "uptime"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "thresholds"
+                  }
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": null
+                      },
+                      {
+                        "color": "#EAB839",
+                        "value": 3600
+                      },
+                      {
+                        "color": "green",
+                        "value": 86400
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Time 1"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "dateTimeFromNow"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "cpu"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percent"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "percentage",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "#EAB839",
+                        "value": 24
+                      },
+                      {
+                        "color": "red",
+                        "value": 49
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "decimals",
+                  "value": 2
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 29,
+          "w": 15,
+          "x": 0,
+          "y": 18
+        },
+        "id": 9,
+        "options": {
+          "frameIndex": 1,
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": false,
+              "displayName": "host"
+            }
+          ]
+        },
+        "pluginVersion": "7.4.1",
+        "targets": [
+          {
+            "alias": "$tag_host $tag_container_name",
+            "groupBy": [
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "container_name"
+                ],
+                "type": "tag"
+              }
+            ],
+            "hide": false,
+            "measurement": "docker_container_status",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "uptime_ns"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    " / 1000000000"
+                  ],
+                  "type": "math"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "container_name"
+                ],
+                "type": "tag"
+              }
+            ],
+            "measurement": "docker_container_cpu",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "usage_percent"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Docker container uptimes",
+        "transformations": [
+          {
+            "id": "seriesToColumns",
+            "options": {
+              "byField": "container_name"
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time 2": true,
+                "host 2": true
+              },
+              "indexByName": {
+                "Time 1": 0,
+                "Time 2": 4,
+                "container_name": 2,
+                "host 1": 1,
+                "host 2": 5,
+                "last 1": 3,
+                "last 2": 6
+              },
+              "renameByName": {
+                "last 1": "uptime",
+                "last 2": "cpu"
+              }
+            }
+          }
+        ],
+        "transparent": true,
+        "type": "table"
+      }
+    ],
+    "refresh": "5m",
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Homelab Uptimes",
+    "uid": "yKRWAABGk",
+    "version": 10
+  }

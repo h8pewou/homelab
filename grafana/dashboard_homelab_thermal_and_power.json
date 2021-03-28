@@ -1,0 +1,1442 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 1,
+    "links": [],
+    "panels": [
+      {
+        "datasource": "-- Mixed --",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "valueName": "last"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-blue",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 60
+                },
+                {
+                  "color": "red",
+                  "value": 75
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "rack_fan"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "rotrpm"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": null
+                      },
+                      {
+                        "color": "dark-green",
+                        "value": 1000
+                      },
+                      {
+                        "color": "#EAB839",
+                        "value": 2200
+                      },
+                      {
+                        "color": "red",
+                        "value": 2600
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "pve_cpu_fan"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "rotrpm"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "dark-green",
+                        "value": null
+                      },
+                      {
+                        "color": "#EAB839",
+                        "value": 2000
+                      },
+                      {
+                        "color": "red",
+                        "value": 2200
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "apcload_electric_w"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "watt"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "rgb(79, 81, 89)",
+                        "value": null
+                      },
+                      {
+                        "color": "#EAB839",
+                        "value": 60
+                      },
+                      {
+                        "color": "red",
+                        "value": 100
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "apcload_electric_v"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "volt"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": null
+                      },
+                      {
+                        "color": "#EAB839",
+                        "value": 200
+                      },
+                      {
+                        "color": "rgb(79, 81, 89)",
+                        "value": 210
+                      },
+                      {
+                        "color": "yellow",
+                        "value": 240
+                      },
+                      {
+                        "color": "red",
+                        "value": 250
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byRegexp",
+                "options": "cpu_pve-lite|cpu_pve|io_pve|io_pve-lite|cpu_arbiter"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percentunit"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "percentage",
+                    "steps": [
+                      {
+                        "color": "rgb(33, 33, 33)",
+                        "value": null
+                      },
+                      {
+                        "color": "#EAB839",
+                        "value": 80
+                      },
+                      {
+                        "color": "red",
+                        "value": 90
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 27,
+          "w": 16,
+          "x": 0,
+          "y": 0
+        },
+        "id": 20,
+        "options": {
+          "anonymousTracking": true,
+          "authPassword": "",
+          "authUsername": "",
+          "composites": [],
+          "content": "graph TD    \nAMBIENT -- Main air intake --> rack_fan([Homelab Rack Fan]) -- Airflow to PVE --> pvenct6776_systin_input\nrack_fan -- Airflow to PVE --> pvesdb\nsubgraph APC UPS\n    apcload_electric_w[APC Load] == AC power === apcload_electric_v[APC Input]\nend\nsubgraph PVE \n    pvenct6776_systin_input[PVE Chassis] -. Airflow within PVE .-> pve_cpu_fan([PVE CPU Fan Speed]) -. Airflow within PVE .-> pvecoretemp_packageid0_input[PVE CPU Temperature]  -.- cpu_pve[PVE CPU Usage] -- UPS power --- apcload_electric_w\n    pvesdb[PVE HDD Temperature] -.- io_pve[PVE IO Wait]\nend\nrack_fan -- Airflow to PVE-LITE --> pve-litecoretemp_packageid0_input\nrack_fan -- Airflow to PVE-LITE --> pve-litesda\nsubgraph PVE-LITE\n    pve-litecoretemp_packageid0_input[PVE-LITE CPU Temperature] -.- cpu_pve-lite[PVE-LITE CPU Usage]  -- UPS power----- apcload_electric_w\n    pve-litesda[PVE-LITE HDD Temperature] -.- io_pve-lite[PVE-LITE IO Wait]\nend\nrack_fan -- Airflow to Arbiter--> arbitersoc_thermal_input[ArbiterCPU Temperature] \nsubgraph Arbiter\n    arbitersoc_thermal_input -.- cpu_arbiter[Arbiter CPU Usage]  -- UPS power ----- apcload_electric_w\nend",
+          "legend": {
+            "asTable": true,
+            "displayMode": "table",
+            "gradient": {
+              "enabled": true,
+              "show": true
+            },
+            "hideEmpty": false,
+            "hideZero": false,
+            "placement": "under",
+            "show": false,
+            "sortBy": "last",
+            "sortDesc": true,
+            "stats": [
+              "mean",
+              "last",
+              "min",
+              "max",
+              "sum"
+            ]
+          },
+          "maxWidth": true,
+          "mermaidServiceUrl": "",
+          "mermaidThemeVariablesDark": {
+            "classDiagram": {},
+            "common": {
+              "fontFamily": "Roboto,Helvetica Neue,Arial,sans-serif",
+              "lineColor": "rgb(245, 249, 255)",
+              "mainBkg": "rgb(5, 5, 5)",
+              "textColor": "rgb(219, 219, 219)"
+            },
+            "flowChart": {
+              "nodeBorder": "rgb(255, 255, 255)"
+            },
+            "sequenceDiagram": {},
+            "stateDiagram": {},
+            "userJourneyDiagram": {}
+          },
+          "mermaidThemeVariablesLight": {
+            "classDiagram": {},
+            "common": {
+              "fontFamily": "Roboto,Helvetica Neue,Arial,sans-serif"
+            },
+            "flowChart": {
+              "nodeBorder": "rgb(86, 145, 235)"
+            },
+            "sequenceDiagram": {},
+            "stateDiagram": {},
+            "userJourneyDiagram": {}
+          },
+          "metricCharacterReplacements": [],
+          "moddedSeriesVal": 0,
+          "mode": "content",
+          "nodeSize": {
+            "minHeight": 10,
+            "minWidth": 10
+          },
+          "pluginVersion": "7.3.6",
+          "style": "",
+          "useBackground": true,
+          "useBasicAuth": false,
+          "valueName": "last"
+        },
+        "pluginVersion": "1.7.1",
+        "targets": [
+          {
+            "alias": "AMBIENT",
+            "datasource": "InfluxDB",
+            "groupBy": [],
+            "measurement": "°C",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT \"value\" FROM \"autogen\".\"°C\" WHERE (\"entity_id\" = 'pve_cpu_temperature') AND $timeFilter",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "entity_id",
+                "operator": "=",
+                "value": "entrance_door_sensor_air_temperature"
+              }
+            ]
+          },
+          {
+            "alias": "cpu_$tag_host",
+            "datasource": "Proxmox",
+            "groupBy": [
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              }
+            ],
+            "measurement": "cpustat",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "K",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "cpu"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "alias": "io_$tag_host",
+            "datasource": "Proxmox",
+            "groupBy": [
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              }
+            ],
+            "measurement": "cpustat",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "L",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "wait"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "alias": "cpu_arbiter",
+            "datasource": "servermonitor",
+            "groupBy": [],
+            "measurement": "cpu",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT \"usage_idle\"*-0.01+1 FROM \"cpu\" WHERE (\"host\" = 'arbiter') AND $timeFilter",
+            "rawQuery": true,
+            "refId": "M",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "usage_idle"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "Nexbox"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_host$tag_sensor",
+            "datasource": "servermonitor",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT \"temp\" FROM \"autogen\".\"temp\" WHERE ((\"sensor\" =~ /.input/ AND \"sensor\" !~ /.pch/ AND \"sensor\" !~ /.auxtin/ AND \"sensor\" !=  'acpitz_input') OR \"sensor\" = 'soc_thermal') AND $timeFilter GROUP BY \"host\", \"sensor\"",
+            "rawQuery": true,
+            "refId": "N",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "alias": "$tag_host$tag_device",
+            "datasource": "servermonitor",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT \"temp_c\" FROM \"smart_device\" WHERE $timeFilter GROUP BY \"host\", \"device\"",
+            "rawQuery": true,
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "alias": "pve_cpu_fan",
+            "datasource": "servermonitor",
+            "groupBy": [],
+            "measurement": "pve_cpu_fan",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"fanspeed\") FROM \"pve_cpu_fan\" WHERE $timeFilter GROUP BY time(5m)",
+            "rawQuery": false,
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "fanspeed"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "alias": "rack_fan",
+            "datasource": "servermonitor",
+            "groupBy": [],
+            "measurement": "rack_fan",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(\"fanspeed\") FROM \"rack_fan\" WHERE $timeFilter GROUP BY time(5m)",
+            "rawQuery": false,
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "fanspeed"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "alias": "apcload_electric_w",
+            "datasource": "servermonitor",
+            "groupBy": [],
+            "measurement": "apcupsd",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT (\"nominal_power\" * \"load_percent\") /100 FROM \"apcupsd\" WHERE $timeFilter",
+            "rawQuery": true,
+            "refId": "E",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "nominal_power"
+                  ],
+                  "type": "field"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "load_percent"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "alias": "apcload_electric_v",
+            "datasource": "servermonitor",
+            "groupBy": [],
+            "measurement": "apcupsd",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "F",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "input_voltage"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Homelab cooling flow",
+        "transparent": true,
+        "type": "jdbranham-diagram-panel"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "-- Mixed --",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "unit": "rotrpm"
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 2,
+        "gridPos": {
+          "h": 7,
+          "w": 8,
+          "x": 16,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 13,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": true,
+        "targets": [
+          {
+            "alias": "Homelab Rack Fan",
+            "datasource": "servermonitor",
+            "groupBy": [],
+            "measurement": "rack_fan",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"fanspeed\") FROM \"rack_fan\",\"pve_cpu_fan\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "fanspeed"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "alias": "PVE CPU Fan",
+            "datasource": "servermonitor",
+            "groupBy": [],
+            "measurement": "pve_cpu_fan",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"fanspeed\") FROM \"rack_fan\",\"pve_cpu_fan\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "fanspeed"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [
+          {
+            "$$hashKey": "object:2433",
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 2800,
+            "yaxis": "left"
+          },
+          {
+            "$$hashKey": "object:2434",
+            "colorMode": "warning",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 2600,
+            "yaxis": "left"
+          }
+        ],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Homelab Fan Speeds (rpm) - Last 24 hours",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1541",
+            "decimals": null,
+            "format": "rotrpm",
+            "label": "",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1542",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "servermonitor",
+        "decimals": 1,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "unit": "watt"
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 5,
+        "gridPos": {
+          "h": 7,
+          "w": 8,
+          "x": 16,
+          "y": 7
+        },
+        "hiddenSeries": false,
+        "id": 22,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": false,
+          "min": false,
+          "rightSide": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": true,
+        "targets": [
+          {
+            "alias": "Electrical Load",
+            "groupBy": [],
+            "measurement": "apcupsd",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT (\"nominal_power\"* \"load_percent\")/100 FROM \"autogen\".\"apcupsd\" WHERE $timeFilter",
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "nominal_power"
+                  ],
+                  "type": "field"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "load_percent"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [
+          {
+            "$$hashKey": "object:1181",
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 80,
+            "yaxis": "left"
+          },
+          {
+            "$$hashKey": "object:1187",
+            "colorMode": "warning",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 65,
+            "yaxis": "left"
+          }
+        ],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "APC Battery Electrical Load - Last 24 hours",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:105",
+            "decimals": 0,
+            "format": "watt",
+            "label": "",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:106",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "servermonitor",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 5,
+        "gridPos": {
+          "h": 7,
+          "w": 8,
+          "x": 16,
+          "y": 14
+        },
+        "hiddenSeries": false,
+        "id": 21,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": true,
+        "targets": [
+          {
+            "alias": "",
+            "groupBy": [],
+            "measurement": "apcupsd",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "battery_charge_percent"
+                  ],
+                  "type": "field"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "load_percent"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "APC Battery Charge and Load - Last 24 hours",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:105",
+            "decimals": null,
+            "format": "percent",
+            "label": null,
+            "logBase": 1,
+            "max": "100",
+            "min": "0",
+            "show": true
+          },
+          {
+            "$$hashKey": "object:106",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "servermonitor",
+        "fieldConfig": {
+          "defaults": {
+            "color": {},
+            "custom": {},
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            },
+            "unit": "volt"
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 1,
+        "gridPos": {
+          "h": 5,
+          "w": 8,
+          "x": 16,
+          "y": 21
+        },
+        "hiddenSeries": false,
+        "id": 11,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": true,
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "apcupsd",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "input_voltage"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [
+          {
+            "$$hashKey": "object:2365",
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 250,
+            "yaxis": "left"
+          },
+          {
+            "$$hashKey": "object:2366",
+            "colorMode": "warning",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 240,
+            "yaxis": "left"
+          },
+          {
+            "$$hashKey": "object:2367",
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "lt",
+            "value": 210,
+            "yaxis": "left"
+          },
+          {
+            "$$hashKey": "object:2368",
+            "colorMode": "warning",
+            "fill": true,
+            "line": true,
+            "op": "lt",
+            "value": 220,
+            "yaxis": "left"
+          }
+        ],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "APC  Input Voltage (V) - Last 24 hours",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:2270",
+            "decimals": null,
+            "format": "volt",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:2271",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "-- Mixed --",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "fill": 0,
+        "fillGradient": 1,
+        "gridPos": {
+          "h": 17,
+          "w": 24,
+          "x": 0,
+          "y": 27
+        },
+        "hiddenSeries": false,
+        "id": 2,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": false,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": true,
+        "targets": [
+          {
+            "alias": "AMBIENT",
+            "datasource": "InfluxDB",
+            "groupBy": [],
+            "hide": false,
+            "measurement": "°C",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT \"value\" FROM \"autogen\".\"°C\" WHERE (\"entity_id\" = 'pve_cpu_temperature') AND $timeFilter",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "entity_id",
+                "operator": "=",
+                "value": "entrance_door_sensor_air_temperature"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_host $tag_sensor",
+            "datasource": "servermonitor",
+            "groupBy": [
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "sensor"
+                ],
+                "type": "tag"
+              }
+            ],
+            "measurement": "temp",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT \"temp\" FROM \"autogen\".\"temp\" WHERE ((\"sensor\" =~ /.input/ AND \"sensor\" !~ /.pch/ AND \"sensor\" !~ /.auxtin/ AND \"sensor\" !=  'acpitz_input') OR \"sensor\" = 'soc_thermal') AND $timeFilter GROUP BY \"host\", \"sensor\"",
+            "rawQuery": true,
+            "refId": "G",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "temp"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor",
+                "operator": "=~",
+                "value": "/.input/"
+              },
+              {
+                "condition": "OR",
+                "key": "sensor",
+                "operator": "=",
+                "value": "soc_thermal"
+              },
+              {
+                "condition": "AND",
+                "key": "sensor",
+                "operator": "=",
+                "value": "select tag value"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_host $tag_device",
+            "datasource": "servermonitor",
+            "groupBy": [
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "device"
+                ],
+                "type": "tag"
+              }
+            ],
+            "measurement": "smart_device",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT \"temp_c\" FROM \"smart_device\" WHERE $timeFilter GROUP BY \"host\", \"device\"",
+            "rawQuery": true,
+            "refId": "H",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "temp_c"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [
+          {
+            "$$hashKey": "object:5949",
+            "colorMode": "warning",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 60,
+            "yaxis": "left"
+          },
+          {
+            "$$hashKey": "object:5950",
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 65,
+            "yaxis": "left"
+          }
+        ],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Temperatures - Last 24 hours",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:5925",
+            "format": "celsius",
+            "label": "",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:5926",
+            "format": "short",
+            "label": null,
+            "logBase": 2,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      }
+    ],
+    "refresh": "1m",
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Homelab thermal and power use",
+    "uid": "0B2A6rxMz",
+    "version": 45
+  }

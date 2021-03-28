@@ -763,7 +763,7 @@ Understanding the states will be important when operating your cluster:
       * VM **bifrost**: Debian Linux with nftables (firewall + NAT), Suricata (IDS/IPS), and dnsmasq (DNS, DHCP, Ad/Tracking Block)
       * VM **dockerhost**: Debian Linux with docker containers
       * VM **awx**: Debian Linux with Ansible AWX docker conatiners
-      * VM **homebridge**: Debian Linux with nginx, nodejs, and homebridge (incl. smartthings, roomba, and wol plugins)
+      * VM **homebridge**: Debian Linux with nginx, nodejs, and homebridge (incl. Smartthing, iRobot, and WOL plugins)
       * VM **datastore**: Debian Linux with TICK stack and Grafana
       * VM **openvpn**: Debian Linux with OpenVPN
       * VM **jumpbox**: Debian Linux with OpenSSH
@@ -778,10 +778,23 @@ Understanding the states will be important when operating your cluster:
 
 ### OpenVPN
 
-### TICK stack
+### TICK stack and Grafana
+#### Telegraf
+#### InfluxDB
+#### Chronograf
+#### Kapacitor
+#### Grafana
+##### Homelab Thermal and Power Dashboard
+##### Homelab Overview Dashboard
+##### Homelab Uptimes
 
 ### Home Automation
 #### Homebridge
+##### Samsung Smartthings Integration
+##### iRobot Integration
+##### Wake On LAN
 #### Hassio
+##### Z-Wave JS and Aeotec Z-stick
+##### Philips Hue
 
 ### Ansible AWX
