@@ -442,7 +442,7 @@ The Corosync Cluster Engine is a Group Communication System with additional feat
 
 
 
-### High cluster level design
+### High level cluster design
 ![Homelab Cluster Design Diagram](https://raw.githubusercontent.com/h8pewou/homelab/main/images/homelab_cluster.PNG)
 
 ### Corosync configuration steps
