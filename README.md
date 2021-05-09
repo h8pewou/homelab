@@ -773,8 +773,155 @@ Understanding the states will be important when operating your cluster:
 
 
 ### Network services
+
+In most cases it is easiest to provide this using a specialized OS like [pfsense](https://www.pfsense.org/), [OPNsense](https://opnsense.org/), or something as light as [OpenWrt](https://openwrt.org/docs/guide-user/installation/openwrt_x86). 
+
+With that said, this setup uses [Debian Linux](https://www.debian.org/) with [nftables](https://wiki.debian.org/nftables) and [dnsmasq](https://wiki.debian.org/dnsmasq) instead. This is done to keep the environment more homogenous, i.e. not to introduce BSD components. This help with upgrade cycles and the overall management of the entire stack.
+
 #### NAT
+
+As this setup predates Debian's nftables transition the following iptables specific files and commands were utilized.
+
+Install and enable the netfilter-persistent package:
+```bash
+apt install netfilter-persistent
+systemctl enable netfilter-persistent
+```
+
+Edit your rules:
+```bash
+vi /etc/iptables/rules.v4
+```
+
+Example rules:
+```
+*raw
+:PREROUTING ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+-A PREROUTING -p tcp -m tcp --tcp-flags FIN,SYN FIN,SYN -j DROP
+-A PREROUTING -p tcp -m tcp --tcp-flags SYN,RST SYN,RST -j DROP
+-A PREROUTING -p tcp -m tcp --tcp-flags FIN,SYN,RST,PSH,ACK,URG FIN,PSH,URG -j DROP
+-A PREROUTING -p tcp -m tcp --tcp-flags FIN,SYN,RST,PSH,ACK,URG FIN -j DROP
+-A PREROUTING -p tcp -m tcp --tcp-flags FIN,SYN,RST,PSH,ACK,URG NONE -j DROP
+-A PREROUTING -p tcp -m tcp --tcp-flags FIN,SYN,RST,PSH,ACK,URG FIN,SYN,RST,PSH,ACK,URG -j DROP
+COMMIT
+*nat
+:PREROUTING ACCEPT [0:0]
+:INPUT ACCEPT [0:0]
+:POSTROUTING ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+#
+# Add your PREROUTING RULES HERE
+#
+-A POSTROUTING -o ens18 -j MASQUERADE
+COMMIT
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i lo -j ACCEPT
+#
+# Add your INPUT RULES HERE
+#
+# Drop invalid
+-A INPUT -m state --state INVALID -j DROP
+-A INPUT -i ens18 -j DROP
+-A FORWARD -i ens20 -o ens19 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -i ens20 -o ens18 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+#
+# Add your FORWARD RULES HERE
+#
+-A FORWARD -i ens19 -m pkttype --pkt-type multicast -j ACCEPT
+-A FORWARD -i ens20 -o ens19 -j DROP
+-A FORWARD -m state --state INVALID -j DROP
+-A OUTPUT -o lo -j ACCEPT
+-A OUTPUT -o ens19 -m pkttype --pkt-type multicast -j ACCEPT
+#
+# Add your REJECT RULES HERE
+#
+-A OUTPUT -m state --state INVALID -j DROP
+COMMIT
+```
+
+Once happy with your rules, commit your changes:
+```bash
+iptables-restore < /etc/iptables/rules.v4
+```
+
+Looking for a more native nftables setup? Check out this [wiki page](https://wiki.debian.org/nftables#nftables_in_Debian_the_easy_way).
+
+
 #### DHCP and DNS
+
+dnsmasq is one of the easiest way to get your DHCP and DNS needs fulfilled. 
+
+Its installation is as easy as:
+
+```bash
+apt install dnsmasq
+systemctl enable dnsmasq.service
+```
+
+The configuration can be done by editing /etc/dnsmasq.conf:
+
+```bash
+vi /etc/dnsmasq.conf
+```
+
+Here is an example configuration:
+```
+dhcp-authoritative
+domain-needed
+localise-queries
+expand-hosts
+bind-dynamic
+local-service
+# Update <YOURDOMAIN> below!
+domain=<YOURDOMAIN>
+server=/<YOURDOMAIN>/192.168.1.1
+local=/<YOURDOMAIN>/
+stop-dns-rebind
+rebind-localhost-ok
+dhcp-broadcast=tag:needs-broadcast
+user=dnsmasq
+group=nogroup
+cache-size=10000
+dns-forward-max=150
+
+# ADD your fixed IP hosts below
+dhcp-host=01:23:45:67:89:ab,192.168.1.99,client_hostname1
+dhcp-host=01:23:45:67:89:ac,192.168.1.100,client_hostname2
+
+# You can find great examples of this file online
+dhcp-ignore-names=tag:dhcp_bogus_hostname
+conf-file=/usr/share/dnsmasq/dhcpbogushostname.conf
+
+resolv-file=/etc/resolv.dnsmasq
+no-poll
+
+# You can find great examples of this file online
+bogus-priv
+conf-file=/usr/share/dnsmasq/rfc6761.conf
+
+# You can find great examples of this file online, you may want to automate its updates
+conf-file=/etc/dnsmasq.blacklist.txt
+
+log-queries
+
+# Set DHCP range for two internal networks and disable it for WAN.
+dhcp-range=set:ens19,192.168.1.100,192.168.1.200,255.255.255.0,12h
+dhcp-option=ens19,6,192.168.1.1
+dhcp-range=set:ens20,192.168.2.100,192.168.2.200,255.255.255.0,12h
+dhcp-option=ens20,6,192.168.2.1
+no-dhcp-interface=ens18
+```
+
+Restart dnsmasq to apply new configuration:
+
+```bash
+systemctl status dnsmasq.service
+```
+
 
 ### OpenVPN
 
