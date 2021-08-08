@@ -195,10 +195,10 @@ vi /etc/apt/sources.list
 Add:
 
 ``` bash
-deb http://download.proxmox.com/debian buster pve-no-subscription
+deb http://download.proxmox.com/debian bullseye pve-no-subscription
 ```
 
-> Visitors from the future: you have to update the repository to your Debian version (e.g., `deb http://download.proxmox.com/debian bullseye pve-no-subscription"`).
+> Are you on PVE 6? You have to update the repository to your Debian version (e.g., `deb http://download.proxmox.com/debian buster pve-no-subscription"`).
 
 Save and quit.
 
@@ -248,9 +248,10 @@ apt-get install libelf-dev build-essential pve-headers-`uname -r`
 Get the latest driver [from Realtek](https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-usb-3-0-software).
 
 ``` bash
-wget https://realtek-download.com/wp-content/uploads/2020/10/r8152.53.56-2.14.0.tar
-tar xvf r8152.53.56-2.14.0.tar 
-cd r8152-2.14.0/
+wget https://rtitwww.realtek.com/rtdrivers/cn/nic1/r8152.53.56-2.15.0.tar.bz2
+bunzip2 r8152.53.56-2.15.0.tar.bz2
+tar xvf r8152.53.56-2.15.0.tar 
+cd r8152-2.15.0/
 ```
 > Note: version numbers may differ.
 
