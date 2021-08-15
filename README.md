@@ -287,6 +287,11 @@ alias usb:v0bdap8156d*dc*dsc*dp*ic*isc*ip*in* r8152
 ```
 > Vendor ID and Product ID may differ if using a different Realtek device.
 
+Also add the udev rules file:
+``` bash
+cp 50-usb-realtek-net.rules /dev/udev/rules/
+```
+
 Update the kernel module dependency file:
 ``` bash
 depmod -a
