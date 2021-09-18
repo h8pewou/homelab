@@ -248,7 +248,7 @@ apt-get install libelf-dev build-essential pve-headers-`uname -r`
 Get the latest driver [from Realtek](https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-usb-3-0-software).
 
 ``` bash
-wget https://rtitwww.realtek.com/rtdrivers/cn/nic1/r8152.53.56-2.15.0.tar.bz2
+wget --no-check-certificate https://rtitwww.realtek.com/rtdrivers/cn/nic1/r8152.53.56-2.15.0.tar.bz2
 bunzip2 r8152.53.56-2.15.0.tar.bz2
 tar xvf r8152.53.56-2.15.0.tar 
 cd r8152-2.15.0/
