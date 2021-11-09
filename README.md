@@ -335,13 +335,11 @@ shutdown -r now
 
 ``` bash
 apt-get install apt-transport-https
-wget -qO- https://repos.influxdata.com/influxdb.key | apt-key add - 
+wget -qO- https://repos.influxdata.com/influxdb.key | tee /etc/apt/trusted.gpg.d/influxdb.asc >/dev/null
 source /etc/os-release
-test $VERSION_ID = "10" && echo "deb https://repos.influxdata.com/debian buster stable" | tee /etc/apt/sources.list.d/influxdb.list
-apt-get update
+echo "deb https://repos.influxdata.com/${ID} ${VERSION_CODENAME} stable" | tee /etc/apt/sources.list.d/influxdb.list
+apt-get update && apt-get install telegraf
 ```
-
-> Visitors from the future: you have to update the repository to your Debian version (e.g., `test $VERSION_ID = "11" && echo "deb https://repos.influxdata.com/debian bullseye stable" | tee /etc/apt/sources.list.d/influxdb.list`).
 
 ##### Install and enable telegraf
 
