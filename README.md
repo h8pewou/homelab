@@ -428,9 +428,9 @@ Login to a PVE cluster node (i.e. the PVE instance which you will use to create 
 
 ### Armbian
 
-Armbian is a Debian and Ubuntu based computer operating system for ARM development boards. Check supported devices [here](https://www.armbian.com/download/?device_support=Supported) and if you have one already, head over [here](https://docs.armbian.com/User-Guide_Getting-Started/).
+Armbian is a Debian and Ubuntu based computer operating system for ARM development boards. Check out the supported devices [here](https://www.armbian.com/download/?device_support=Supported) and if you have one already, head over [here](https://docs.armbian.com/User-Guide_Getting-Started/).
 
-In this guide, this will be setup as an arbiter host.
+This guide will use Armbian OS on the arbiter host.
 
 ## Clustering
 
