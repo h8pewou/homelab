@@ -434,12 +434,12 @@ This guide will use Armbian OS on the arbiter host.
 
 ## Clustering
 
-This guide will focus on a simple high availability setup for home use.
+A simple high availability setup for home use.
 
 
 ### Corosync
 
-The Corosync Cluster Engine is a Group Communication System with additional features for implementing high availability within applications. Proxmox has fairly straightforward implementation of this that can be configured from the GUI.
+The Corosync Cluster Engine is a Group Communication System with additional features for implementing high availability within applications. Proxmox has a fairly straightforward implementation of this and to make life easier, it can be configured from the GUI.
 
 
 ### GlusterFS
@@ -462,13 +462,14 @@ Use one of the following URLs to create a two node cluster:
 </p>
 
 #### Add a quorum device
-A two node cluster is not highly available. Simple glitches could lead to losing quorum a.k.a. a split brain situation. You want to have an uneven number of nodes. A cost effective solution is to use a corosync quorum device.
+A two node cluster is not highly available. Simple glitches could lead to losing quorum, a.k.a. a split brain situation. You want to have an uneven number of nodes. In case if you have an even nymber of nodes, a cost effective solution is to use a corosync quorum device.
+
 Once your two node cluster is up and running, follow these instructions: 
 * [Corosync External Vote Support](https://pve.proxmox.com/wiki/Cluster_Manager#_corosync_external_vote_support)
 
 **TLDR** version:
 
-> Reading the documentation and understanding the quorum device limitations can save you from a lot of headache. 
+> Please note that reading the documentation and understanding the quorum device limitations can save you from a lot of headache. 
 
 On the Arbiter device:
 ```bash
@@ -485,8 +486,8 @@ pvecm qdevice setup <QDEVICE IP ADDRESS>
 
 ### Gluster configuration steps
 #### Before you begin
-Setting up gluster for home use is very simple as long as you understand the following limitations:
-* Gigabit shared connections may compromise the performance of your cluster file system. Dedicated multigig netowrking is strongly recommended. I've used a dedicated 2.5Gbe connection. To stay within the budget this had to be connected via USB 3. This is generally not recommended. Having that said, this still provides acceptable performance for home use, peaking around 300 MB/s.
+Setting up gluster for home use is very simple, as long as you understand the following limitations:
+* Gigabit shared connections may compromise the performance of your cluster file system. Dedicated multigig netowrking is strongly recommended. To stay within the budget, this guide will use a 2.5GBe USB 3 connection. Using a USB network interface is generally not recommended. Having said that, this still provides acceptable performance for home use, peaking around 300 MB/s.
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/h8pewou/homelab/main/images/homelab_multigig_peak.png" width="600"><br \>
@@ -494,7 +495,7 @@ Setting up gluster for home use is very simple as long as you understand the fol
 </p>
 
 * Self healing will take a long time, even if you use multiple threads (see instructions below).
-* The instructions below will not setup any redundancy besides the replication in GlusterFS. In this configuration, two failing disks in the same volume will lead to data loss. You can tackle this by adding more disks and using RAID as an example.
+* The instructions below will not setup any redundancy besides the replication in GlusterFS. In this configuration, two failing disks in the same volume will lead to data loss. You can tackle this by adding more disks or using RAID.
   * Alternatively you can also add more cluster nodes (with more disks) to further improve availability and reduce the chance of data loss. Having three nodes also negates the need of an arbiter machine, thus making the setup more straightforward for both PVE and Gluster. 
   * These setups can be wildly different from the one described below. I strongly recommend you to read and understand the [Setting up GlusterFS Volumes](https://docs.gluster.org/en/latest/Administrator-Guide/Setting-Up-Volumes/) page.
 
@@ -502,7 +503,7 @@ Setting up gluster for home use is very simple as long as you understand the fol
 ##### Execute on all Proxmox VE nodes:
 
 ###### Partition your target disk
-Use fdisk -l to pick the right disk. This tutorial will use /dev/sda, you may need to change that.
+Use fdisk -l to identify the right disk. This tutorial will use /dev/sda, you may need to change that.
 ``` bash
 fdisk -l
 ```
