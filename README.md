@@ -1086,16 +1086,55 @@ apt install chronograf
 * Click Add Source.
  
 #### Kapacitor
+
+If installing on the same machine as the InfluxDB, issue the following command:
+```bash
+apt install chronograf
+```
+> Online instructions are available [here](https://docs.influxdata.com/kapacitor/v1.6/introduction/installation/)
+ 
+Ensure that `/etc/kapacitor/kapacitor.conf` contains InfluxDB connection details:
+ 
+```
+[[influxdb]]
+  # Connect to an InfluxDB cluster
+  # Kapacitor can subscribe, query and write to this cluster.
+  # Using InfluxDB is not required and can be disabled.
+  enabled = true
+  default = true
+  name = "localhost"
+# You may need to update the url if hosted on a separate host
+  urls = ["http://localhost:8086"]
+# Change this if a different user is used for Kapacitor in InfluxDB
+  username = "kapacitor"
+# Update this to match your password
+  password = "[REDACTED]"
+  timeout = 0
+```
+ 
 #### Grafana
-##### Homelab Thermal and Power Dashboard
-##### Homelab Overview Dashboard
-##### Homelab Uptimes
+
+Install Grafana on Debian 11:
+```bash
+sudo apt-get install -y apt-transport-https
+sudo apt-get install -y software-properties-common wget
+wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+sudo apt-get update
+sudo apt-get install grafana
+sudo systemctl daemon-reload
+sudo systemctl start grafana-server
+sudo systemctl status grafana-server
+```
+> Alternative instructions are available [here](https://grafana.com/docs/grafana/latest/installation/)
+ 
+The initial configuration can be done using in `/etc/grafana/grafana.ini`. This is fairly well documented [here](https://grafana.com/docs/grafana/latest/administration/configuration/).
+
+When finished, restart the service and head over to http://<grafana-host>:3000/. 
+
+##### Example dashboards
 
 ### Home Automation
-#### Homebridge
-##### Samsung Smartthings Integration
-##### iRobot Integration
-##### Wake On LAN
 #### Hassio
 ##### Z-Wave JS and Aeotec Z-stick
 ##### Philips Hue
