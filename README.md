@@ -931,8 +931,103 @@ systemctl status dnsmasq.service
 ### OpenVPN
 
 ### TICK stack and Grafana
+The TICK stack is a collection of associated technologies that consists of Telegraf, InfluxDB, Chronograf, and Kapacitor. In this guide the components are used as follows:
+ 
+ * Telegraf is a plugin-driven server agent for collecting and sending metrics and events. It is installed on every virtual and physical linux host.
+ * InfluxDB is a time series database that stores the events collected by Telegraf.
+ * Chronograf is a web application, it is used to setup access to InfluxDB and troubleshoot potential issues with Telegraf configuration.
+ * Kapacitor is a data processing framework that makes it easy to create alerts
+
+While Chronograf and Kapacitor are great products, this guide uses Grafana for analytics & monitoring.
+
 #### Telegraf
+##### Installing Telegraf
+Installing on Debian or Ubuntu:
+```bash
+wget -qO- https://repos.influxdata.com/influxdb.key | sudo tee /etc/apt/trusted.gpg.d/influxdb.asc >/dev/null
+source /etc/os-release
+echo "deb https://repos.influxdata.com/${ID} ${VERSION_CODENAME} stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
+sudo apt-get update && sudo apt-get install telegraf
+```
+> Running a different OS? Check the official documentation for instructions [here](https://docs.influxdata.com/telegraf/v1.21/introduction/installation/).
+
+Once the agent is installed you can edit the configuration file here: `/etc/telegraf/telegraf.conf`
+
+Here is an example for a physical host:
+
+```
+[global_tags]
+  host = "$HOSTNAME"
+[agent]
+  interval = "5m"
+[[outputs.influxdb]]
+  urls = ["http://<influxdb host or ip address>:8086"] 
+  database = "<influxdb db name>" 
+  username = "<telegraf user>"
+  password = "<telegraf user password>"
+# Collect temperatures from linux sensors (if installed and configured)
+[[inputs.temp]]
+# Collect SMART statistics (incl. drive temperatures), this configuration uses sudo which may require further sudoers configuration
+[[inputs.smart]]
+  use_sudo = true
+# Collect fan speed information using a custom executable
+[[inputs.exec]]
+  commands = ["/bin/sh /usr/local/bin/telegraf_fanspeed.sh"]
+  timeout = "5s"
+  data_format = "influx"
+# Collect ping statistics for a number of URLs
+[[inputs.ping]]
+  urls = ["pve-lite","pve-rick"]
+  count = 4
+```
+
+Enable and start the telegraf agent when it is configured. See Debian 11 example below:
+
+```bash
+systemctl enable telegraf
+systemctl restart telegraf
+systemctl status telegraf
+```
+ 
 #### InfluxDB
+Use [these steps](https://docs.influxdata.com/influxdb/v1.8/introduction/install/) to install the latest pre 2.x version of InfluxDB. 
+ 
+Here is a short guide for Debian 11:
+ 
+```bash
+wget -qO- https://repos.influxdata.com/influxdb.key | gpg --dearmor > /etc/apt/trusted.gpg.d/influxdb.gpg
+export DISTRIB_ID=$(lsb_release -si); export DISTRIB_CODENAME=$(lsb_release -sc)
+echo "deb [signed-by=/etc/apt/trusted.gpg.d/influxdb.gpg] https://repos.influxdata.com/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" > /etc/apt/sources.list.d/influxdb.list
+sudo apt-get update && sudo apt-get install influxdb
+sudo systemctl unmask influxdb.service
+sudo systemctl start influxdb
+```
+
+You may also want to make the following changes to improve how your system handles UDP:
+```bash
+sysctl -w net.core.rmem_max=26214400
+sysctl -w net.core.rmem_default=26214400
+```
+To make these changes permanent, also edit /etc/sysctl.conf and add the following lines:
+```
+# Influxdb udp settings
+net.core.rmem_max=26214400
+net.core.rmem_default=26214400
+```
+ 
+Once completed make sure that your /etc/influxdb/influxdb.conf contains the following Proxmox configuration lines:
+ 
+```
+[[udp]]
+   enabled = true
+   bind-address = "0.0.0.0:8089"
+   database = "proxmox"
+   batch-size = 1000
+   batch-timeout = "1s"
+```
+
+You may need to uncomment this until the proxmox database is created.
+ 
 #### Chronograf
 #### Kapacitor
 #### Grafana
