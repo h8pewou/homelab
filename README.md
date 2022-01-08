@@ -1015,7 +1015,7 @@ net.core.rmem_max=26214400
 net.core.rmem_default=26214400
 ```
  
-Once completed make sure that your /etc/influxdb/influxdb.conf contains the following Proxmox configuration lines:
+Once completed make sure that your `/etc/influxdb/influxdb.conf` contains the following Proxmox configuration lines:
  
 ```
 [[udp]]
@@ -1026,9 +1026,65 @@ Once completed make sure that your /etc/influxdb/influxdb.conf contains the foll
    batch-timeout = "1s"
 ```
 
-You may need to uncomment this until the proxmox database is created.
+> You may need to uncomment this until the proxmox database is created.
+
+ 
+Use the influx CLI to create your desired authorizations: https://docs.influxdata.com/influxdb/v1.8/administration/authentication_and_authorization/#authorization
+ 
+This may include users for all intended use cases, like telegraf, chronograf, kapacitor, grafana etc.
+```bash
+influx -precision rfc3339
+```
+Example
+```sql
+# Create a database called kapacitor
+CREATE DATABASE kapacitor
+# Create a user called kapacitor with all privileges
+CREATE USER kapacitor WITH PASSWORD [REDACTED] WITH ALL PRIVILEGES
+# An example list of databases
+SHOW databases
+name: databases
+name
+----
+_internal
+kapacitor
+chronograf
+homeassistant
+proxmox
+telegraf
+servermonitor
+# An example list of users
+SHOW users
+user          admin
+----          -----
+admin         true
+kapacitor     true
+chronograf    true
+grafana       true
+homeassistant true
+telegraf      true
+ntopng        true
+```
+
+ 
+
  
 #### Chronograf
+
+If installing on the same machine as the InfluxDB, issue the following command:
+```bash
+apt install chronograf
+```
+> Alternative installation methods are available [here](https://docs.influxdata.com/chronograf/v1.9/introduction/installation/)
+
+* In a browser, navigate to <hostname>:8888.
+* Provide the following details:
+** Connection String: InfluxDB hostname or IP, and port (default port is 8086).
+** Connection Name: Connection name.
+** Username and Password: If you’ve enabled InfluxDB authentication, provide your InfluxDB username and password. Otherwise, leave blank.
+** Telegraf Database Name: (Optional) Telegraf database name. Default name is telegraf.
+* Click Add Source.
+ 
 #### Kapacitor
 #### Grafana
 ##### Homelab Thermal and Power Dashboard
