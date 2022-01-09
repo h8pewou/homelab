@@ -9,9 +9,7 @@ Building a low power hyperconverged Homelab on a tight budget.
     * DHCP
     * DNS
     * Firewall
-  * Home automation services
-    * Homebridge
-    * Homeassistant
+  * Homeassistant
   * [TICK stack](https://www.influxdata.com/time-series-platform/)
   * OpenVPN
   * Docker
@@ -1079,10 +1077,10 @@ apt install chronograf
 
 * In a browser, navigate to <hostname>:8888.
 * Provide the following details:
-** Connection String: InfluxDB hostname or IP, and port (default port is 8086).
-** Connection Name: Connection name.
-** Username and Password: If you’ve enabled InfluxDB authentication, provide your InfluxDB username and password. Otherwise, leave blank.
-** Telegraf Database Name: (Optional) Telegraf database name. Default name is telegraf.
+  * Connection String: InfluxDB hostname or IP, and port (default port is 8086).
+  * Connection Name: Connection name.
+  * Username and Password: If you’ve enabled InfluxDB authentication, provide your InfluxDB username and password. Otherwise, leave blank.
+  * Telegraf Database Name: (Optional) Telegraf database name. Default name is telegraf.
 * Click Add Source.
  
 #### Kapacitor
@@ -1134,9 +1132,47 @@ When finished, restart the service and head over to http://<grafana-host>:3000/.
 
 ##### Example dashboards
 
+Grafana allows you to build functional dashboards with relative ease. They maintain an excellent library [here](https://grafana.com/grafana/dashboards/).
+ 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/h8pewou/homelab/main/images/homelab_grafana_overview_dashboard.PNG" width="600"><br \>
+  Homelab Overview Dashboard screenshot
+</p>
+ 
+You can find some example dashboards created for this tutorial here:
+ * [Homelab Overview](https://github.com/h8pewou/homelab/blob/main/grafana/dashboard_homelab_overview.json)
+ * [Homelab Thermal and Power](https://github.com/h8pewou/homelab/blob/main/grafana/dashboard_homelab_thermal_and_power.json)
+ * [Homelab Uptimes](https://github.com/h8pewou/homelab/blob/main/grafana/dashboard_homelab_uptimes.json)
+
 ### Home Automation
-#### Hassio
+ 
+#### HAOS
+
+Home Assistant Operating System is one of the easiest way to get a very flexible home automation system up and running.
+Installing it on Proxmox is fairly simple:
+ 
+ * Download the latest version of of their KVM/Proxmox image from [here](https://www.home-assistant.io/installation/alternative) to one of your PVE nodes or Gluster filesystems
+ * Unarchive the file
+ * Create a new VM in the Proxmox GUI (top right)
+ * Enter a name (e.g., homeassistant)
+ * Under the OS tab, select "Do not use any media"
+ * Under the System tab, select q35 as Machine, change the BIOS to OVMF (UEFI), and then select the storage (e.g., gluster)
+ * On the following screens adjust the default values as you see fit
+   * Don't know what to select? 2 cores of CPU and 2 GB of memory can be a good starting point
+ * Ensure that the VM is initialized but stopped
+ * Login to one of your PVE nodes and import the Proxmox image:
+```bash
+qm importdisk <vm_id_of_new_vm> </path/to/downloaded/image> <target_storage> --format qcow2
+```
+ * Here is an example: `qm importdisk 301 /root/haos_ova-7.1.qcow2 gluster_ssd0 --format qcow2`
+ * Go back to your Proxmox GUI, delete the originally created disk from the VM (detach and remove)
+ * Double click your newly added Unused disk, adjust its size to at least 32 GB 
+ * Go to Options and make sure that the new disk is the first in the boot order 
+
+TODO Screenshots
+ 
 ##### Z-Wave JS and Aeotec Z-stick
+TODO Proxmox USB support
 ##### Philips Hue
 
 ### Ansible AWX
