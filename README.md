@@ -209,7 +209,7 @@ vi /etc/apt/sources.list.d/pve-enterprise.list
 Update repositories and upgrade:
 
 ``` bash
-apt-get update && apt-get dist-upgrade
+apt-get update && apt-get dist-upgrade -y
 ```
 
 Reboot if there was a new kernel installed.
