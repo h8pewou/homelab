@@ -219,7 +219,7 @@ Reboot if there was a new kernel installed.
 Install further packages:
 
 ``` bash
-apt install apcupsd lm-sensors fancontrol glusterfs-server glusterfs-client sudo \
+apt install apcupsd lm-sensors fancontrol glusterfs-server glusterfs-client nvme-cli sudo \
 unattended-upgrades apt-listchanges libelf-dev build-essential pve-headers-`uname -r`
 ```
 
