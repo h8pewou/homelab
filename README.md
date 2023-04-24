@@ -235,14 +235,17 @@ Many of these may be optional for you, the following descriptions may help:
 #### Setup email forwarding using gmail
 
 Install the prerequisite module:
-```apt install libsasl2-modules -y```
+```apt install libsasl2-modules -y
+```
 
 Edit the postfix configuration as follows:
-```vi /etc/postfix/main.cf```
+```vi /etc/postfix/main.cf
+```
 
 Uncomment the following lines:
 ```mydestination = $myhostname, localhost.$mydomain, localhost
-relayhost =```
+relayhost =
+```
 
 Add the following lines instead:
 ```#GMAIL configuration
@@ -251,21 +254,26 @@ smtp_use_tls = yes
 smtp_sasl_auth_enable = yes
 smtp_sasl_security_options =
 smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
-smtp_tls_CAfile = /etc/ssl/certs/Entrust_Root_Certification_Authority.pem```
+smtp_tls_CAfile = /etc/ssl/certs/Entrust_Root_Certification_Authority.pem
+```
 
 Add your app specific password to this file:
-```vi /etc/postfix/sasl_passwd```
+```vi /etc/postfix/sasl_passwd
+```
 
 Add this to the file:
-```smtp.gmail.com:587 <your email>:<your password>```
+```smtp.gmail.com:587 <your email>:<your password>
+```
 
 Apply the configuration:
 ```postmap hash:/etc/postfix/sasl_passwd
 chmod 600 /etc/postfix/sasl_passwd
-systemctl restart postfix```
+systemctl restart postfix
+```
 
 Test your configuration:
-```echo "Test email from Proxmox: $(hostname)" | /usr/bin/proxmox-mail-forward```
+```echo "Test email from Proxmox: $(hostname)" | /usr/bin/proxmox-mail-forward
+```
 
 #### Install Realtek 2.5G Ethernet driver
 
