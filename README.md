@@ -391,6 +391,9 @@ Add the following lines:
 Cmnd_Alias SMARTCTL = /usr/sbin/smartctl
 telegraf  ALL=(ALL) NOPASSWD: SMARTCTL
 Defaults!SMARTCTL !logfile, !syslog, !pam_session
+Cmnd_Alias NVME = /usr/sbin/nvme
+telegraf ALL=(ALL) NOPASSWD: NVME
+Defaults!NVME !logfile, !syslog, !pam_session
 ```
 
 ##### Restart telegraf service
