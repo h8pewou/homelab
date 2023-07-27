@@ -676,7 +676,7 @@ systemctl enable glusterd
 ```
 
 ##### Execute on one of the nodes
-> TODO: Add thin arbiter instructions. Further reading: [A 'Thin Arbiter' for glusterfs replication](https://archive.fosdem.org/2020/schedule/event/sds_gluster_thin_arbiter/attachments/slides/4110/export/events/attachments/sds_gluster_thin_arbiter/slides/4110/gluster_thin_arbiter_fosdem_2020.pdf) by [Ravishankar N](https://twitter.com/itisravi).
+> TODO: Add thin arbiter instructions. Further reading: [A 'Thin Arbiter' for glusterfs replication](https://archive.fosdem.org/2020/schedule/event/sds_gluster_thin_arbiter/attachments/slides/4110/export/events/attachments/sds_gluster_thin_arbiter/slides/4110/gluster_thin_arbiter_fosdem_2020.pdf) by [Ravishankar N](https://twitter.com/itisravi). Please note that I never got thin arbiter working. There is a chance that it is not a viable option. See [issue 2](https://github.com/h8pewou/homelab/issues/2).
 
 Run peer probe:
 ``` bash
